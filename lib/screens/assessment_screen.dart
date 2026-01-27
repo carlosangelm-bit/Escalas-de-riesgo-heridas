@@ -443,16 +443,16 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                   decoration: BoxDecoration(
                     color: isSelected
                         ? (widget.assessmentType == 'pressure_injury'
-                            ? AppTheme.pressureStart.withValues(alpha: 0.1)
-                            : AppTheme.infectionStart.withValues(alpha: 0.1))
-                        : Colors.grey.withValues(alpha: 0.05),
+                            ? AppTheme.pressureStart.withOpacity( 0.1)
+                            : AppTheme.infectionStart.withOpacity( 0.1))
+                        : Colors.grey.withOpacity( 0.05),
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
                       color: isSelected
                           ? (widget.assessmentType == 'pressure_injury'
                               ? AppTheme.pressureStart
                               : AppTheme.infectionStart)
-                          : Colors.grey.withValues(alpha: 0.3),
+                          : Colors.grey.withOpacity( 0.3),
                       width: 2,
                     ),
                   ),
@@ -632,13 +632,13 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     color: isSelected
-                        ? AppTheme.infectionStart.withValues(alpha: 0.1)
-                        : Colors.grey.withValues(alpha: 0.05),
+                        ? AppTheme.infectionStart.withOpacity( 0.1)
+                        : Colors.grey.withOpacity( 0.05),
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
                       color: isSelected
                           ? AppTheme.infectionStart
-                          : Colors.grey.withValues(alpha: 0.3),
+                          : Colors.grey.withOpacity( 0.3),
                       width: 2,
                     ),
                   ),
@@ -827,9 +827,9 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                             child: Container(
                               padding: const EdgeInsets.all(12),
                               decoration: BoxDecoration(
-                                color: Colors.orange.withValues(alpha: 0.1),
+                                color: Colors.orange.withOpacity( 0.1),
                                 borderRadius: BorderRadius.circular(8),
-                                border: Border.all(color: Colors.orange.withValues(alpha: 0.3)),
+                                border: Border.all(color: Colors.orange.withOpacity( 0.3)),
                               ),
                               child: Row(
                                 children: [
@@ -865,7 +865,7 @@ class _AssessmentScreenState extends State<AssessmentScreen> {
                                   vertical: 6,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: AppTheme.infectionStart.withValues(alpha: 0.1),
+                                  color: AppTheme.infectionStart.withOpacity( 0.1),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Text(
