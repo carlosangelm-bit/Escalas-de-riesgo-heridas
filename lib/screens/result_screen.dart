@@ -148,7 +148,7 @@ class ResultScreen extends StatelessWidget {
                 end: Alignment.bottomRight,
                 colors: [
                   riskColor,
-                  riskColor.withValues(alpha: 0.7),
+                  riskColor.withOpacity( 0.7),
                 ],
               ),
             ),
