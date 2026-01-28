@@ -77,13 +77,7 @@ class AppTheme {
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.white,
       ),
-      cardTheme: const CardThemeData(
-        elevation: 4,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(16)),
-        ),
-        clipBehavior: Clip.antiAlias,
-      ),
+      
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           elevation: 2,
