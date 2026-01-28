@@ -192,9 +192,9 @@ class _EligibilityScreenState extends State<EligibilityScreen> {
                         Container(
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
-                            color: Colors.blue.withOpacity(alpha: 0.1),
+                            color: Colors.blue.withOpacity( 0.1),
                             borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: Colors.blue.withOpacity(alpha: 0.3)),
+                            border: Border.all(color: Colors.blue.withOpacity( 0.3)),
                           ),
                           child: Row(
                             children: [
@@ -239,12 +239,12 @@ class _EligibilityScreenState extends State<EligibilityScreen> {
                                   border: Border.all(
                                     color: isSelected
                                         ? Colors.transparent
-                                        : Colors.grey.withOpacity(alpha: 0.3),
+                                        : Colors.grey.withOpacity( 0.3),
                                     width: 2,
                                   ),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.black.withOpacity(alpha: 0.1),
+                                      color: Colors.black.withOpacity( 0.1),
                                       blurRadius: 8,
                                       offset: const Offset(0, 4),
                                     ),
