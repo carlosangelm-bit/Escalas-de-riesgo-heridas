@@ -63,7 +63,7 @@ class DefaultFirebaseOptions {
     appId: '1:112078476646:ios:abc123def456',
     messagingSenderId: '112078476646',
     projectId: 'surgical-supply',
-    bundleId: 'com.surgicalsupply.woundcarepro',
+    iosBundleId: 'com.surgicalsupply.woundcarepro',
     storageBucket: 'surgical-supply.appspot.com',
   );
 
@@ -72,7 +72,7 @@ class DefaultFirebaseOptions {
     appId: '1:112078476646:ios:abc123def456',
     messagingSenderId: '112078476646',
     projectId: 'surgical-supply',
-    bundleId: 'com.surgicalsupply.woundcarepro',
+    iosBundleId: 'com.surgicalsupply.woundcarepro',
     storageBucket: 'surgical-supply.appspot.com',
   );
 
