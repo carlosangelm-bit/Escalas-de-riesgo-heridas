@@ -48,6 +48,18 @@ dependencies:
   firebase_core: 3.6.0
   cloud_firestore: 5.4.3
   firebase_storage: 12.3.2
+  firebase_auth: 5.3.1
+  
+  # PDF Generation
+  pdf: 3.11.1
+  path_provider: 2.1.5
+  printing: 5.14.0
+  
+  # Charts & Graphs
+  fl_chart: 0.69.2
+  
+  # UUID Generator
+  uuid: 4.5.1
 
 dev_dependencies:
   flutter_test:

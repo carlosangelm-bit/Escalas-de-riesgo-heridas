@@ -618,4 +618,53 @@ class EscalaKuraLpp {
       'categoria': categoria,
     };
   }
+  
+  /// Crear desde Map/JSON
+  factory EscalaKuraLpp.fromJson(Map<String, dynamic> json) {
+    final escala = EscalaKuraLpp();
+    
+    // Nutrición
+    escala.albuminaSerica = json['albuminaSerica'] as double?;
+    escala.prealbumina = json['prealbumina'] as double?;
+    escala.proteinasTotales = json['proteinasTotales'] as double?;
+    escala.perdidaPesoInvoluntaria = json['perdidaPesoInvoluntaria'] as double?;
+    escala.ingestaProteica = json['ingestaProteica'] as double?;
+    
+    // Perfusión
+    escala.indiceTobilloBrazo = json['indiceTobilloBrazo'] as double?;
+    escala.tcpo2Perilesional = json['tcpo2Perilesional'] as double?;
+    escala.llenadoCapilar = json['llenadoCapilar'] as String?;
+    escala.edemaPeriferico = json['edemaPeriferico'] as String?;
+    
+    // Herida
+    escala.cronicidadMeses = json['cronicidadMeses'] as int?;
+    escala.porcentajeGranulacion = json['porcentajeGranulacion'] as double?;
+    escala.porcentajeFibrina = json['porcentajeFibrina'] as double?;
+    escala.necrosisPresente = json['necrosisPresente'] as bool? ?? false;
+    escala.exudadoSeroHematico = json['exudadoSeroHematico'] as double?;
+    escala.exudadoPurulento = json['exudadoPurulento'] as double?;
+    escala.exudadoSeroPurulento = json['exudadoSeroPurulento'] as double?;
+    escala.infeccionAguda = json['infeccionAguda'] as bool? ?? false;
+    escala.infeccionCronica = json['infeccionCronica'] as String?;
+    
+    // Presión
+    escala.adherenciaAlivioPresion = json['adherenciaAlivioPresion'] as double?;
+    escala.frecuenciaCambiosPosturales = json['frecuenciaCambiosPosturales'] as double?;
+    escala.bradenMovilidad = json['bradenMovilidad'] as int? ?? 4;
+    escala.bradenHumedad = json['bradenHumedad'] as int? ?? 4;
+    
+    // Clínico
+    escala.hba1c = json['hba1c'] as double?;
+    escala.glucosa = json['glucosa'] as double?;
+    escala.hemoglobina = json['hemoglobina'] as double?;
+    escala.pcr = json['pcr'] as double?;
+    escala.inmunosupresion = json['inmunosupresion'] as String?;
+    escala.medicamentos = json['medicamentos'] as String?;
+    escala.antecedentesLpp = json['antecedentesLpp'] as String?;
+    escala.toxicomanias = json['toxicomanias'] as String?;
+    escala.comorbilidades = json['comorbilidades'] as String?;
+    escala.funcionRenal = json['funcionRenal'] as String?;
+    
+    return escala;
+  }
 }
