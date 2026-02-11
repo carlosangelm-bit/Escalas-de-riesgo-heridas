@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/escala_kura_lpp.dart';
+import '../widgets/labeled_slider.dart';
 import 'escala_kura_result_screen.dart';
 
 class EscalaKuraLppScreen extends StatefulWidget {
@@ -231,27 +232,38 @@ class _EscalaKuraLppScreenState extends State<EscalaKuraLppScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Laboratorios (últimos 7 días):', style: TextStyle(fontWeight: FontWeight.bold)),
-        const SizedBox(height: 12),
-        TextField(
-          decoration: const InputDecoration(labelText: 'Albúmina sérica (g/dL)'),
-          keyboardType: TextInputType.number,
-          onChanged: (v) => setState(() => _escala.albuminaSerica = double.tryParse(v)),
-        ),
         const SizedBox(height: 16),
+        LabValueSlider(
+          label: 'Albúmina sérica',
+          value: _escala.albuminaSerica ?? 3.5,
+          min: 1.0,
+          max: 5.0,
+          unit: 'g/dL',
+          normalMin: 3.5,
+          normalMax: 5.0,
+          onChanged: (v) => setState(() => _escala.albuminaSerica = v),
+          tooltip: 'Normal: 3.5-5.0 g/dL',
+        ),
+        const SizedBox(height: 20),
         const Text('Historia clínica (30 días):', style: TextStyle(fontWeight: FontWeight.bold)),
-        const SizedBox(height: 12),
-        TextField(
-          decoration: const InputDecoration(labelText: 'Pérdida de peso (%)'),
-          keyboardType: TextInputType.number,
-          onChanged: (v) => setState(() => _escala.perdidaPesoInvoluntaria = double.tryParse(v)),
-        ),
-        const SizedBox(height: 12),
-        TextField(
-          decoration: const InputDecoration(labelText: 'Ingesta proteica (g/kg/día)'),
-          keyboardType: TextInputType.number,
-          onChanged: (v) => setState(() => _escala.ingestaProteica = double.tryParse(v)),
+        const SizedBox(height: 16),
+        PercentageSlider(
+          label: 'Pérdida de peso involuntaria',
+          value: _escala.perdidaPesoInvoluntaria ?? 0,
+          onChanged: (v) => setState(() => _escala.perdidaPesoInvoluntaria = v),
+          tooltip: '% peso perdido últimos 30 días',
         ),
         const SizedBox(height: 16),
+        LabeledSlider(
+          label: 'Ingesta proteica',
+          value: _escala.ingestaProteica ?? 1.0,
+          min: 0.0,
+          max: 2.5,
+          unit: ' g/kg/día',
+          onChanged: (v) => setState(() => _escala.ingestaProteica = v),
+          tooltip: 'Recomendado: 1.2-1.5 g/kg/día',
+        ),
+        const SizedBox(height: 20),
         _buildDomainScore('Nutrición', _escala.dominioNutricion, 3),
       ],
     );
@@ -262,13 +274,16 @@ class _EscalaKuraLppScreenState extends State<EscalaKuraLppScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Doppler/Vascular (30 días):', style: TextStyle(fontWeight: FontWeight.bold)),
-        const SizedBox(height: 12),
-        TextField(
-          decoration: const InputDecoration(labelText: 'ITB/ABI (ratio)'),
-          keyboardType: TextInputType.number,
-          onChanged: (v) => setState(() => _escala.indiceTobilloBrazo = double.tryParse(v)),
-        ),
         const SizedBox(height: 16),
+        LabeledSlider(
+          label: 'ITB/ABI (Índice Tobillo-Brazo)',
+          value: _escala.indiceTobilloBrazo ?? 1.0,
+          min: 0.0,
+          max: 1.5,
+          onChanged: (v) => setState(() => _escala.indiceTobilloBrazo = v),
+          tooltip: 'Normal: 0.9-1.3. <0.9 indica enfermedad arterial',
+        ),
+        const SizedBox(height: 20),
         const Text('Exploración física:', style: TextStyle(fontWeight: FontWeight.bold)),
         const SizedBox(height: 12),
         DropdownButtonFormField<String>(
@@ -292,24 +307,31 @@ class _EscalaKuraLppScreenState extends State<EscalaKuraLppScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextField(
-          decoration: const InputDecoration(labelText: 'Cronicidad (meses)'),
-          keyboardType: TextInputType.number,
-          onChanged: (v) => setState(() => _escala.cronicidadMeses = int.tryParse(v)),
+        LabeledSlider(
+          label: 'Cronicidad de la lesión',
+          value: (_escala.cronicidadMeses ?? 0).toDouble(),
+          min: 0,
+          max: 24,
+          divisions: 24,
+          unit: ' meses',
+          onChanged: (v) => setState(() => _escala.cronicidadMeses = v.round()),
+          tooltip: 'Tiempo desde aparición de la lesión',
         ),
-        const SizedBox(height: 12),
-        TextField(
-          decoration: const InputDecoration(labelText: '% Granulación'),
-          keyboardType: TextInputType.number,
-          onChanged: (v) => setState(() => _escala.porcentajeGranulacion = double.tryParse(v)),
+        const SizedBox(height: 16),
+        PercentageSlider(
+          label: 'Tejido de granulación',
+          value: _escala.porcentajeGranulacion ?? 0,
+          onChanged: (v) => setState(() => _escala.porcentajeGranulacion = v),
+          tooltip: 'Porcentaje de tejido de granulación saludable',
         ),
-        const SizedBox(height: 12),
-        TextField(
-          decoration: const InputDecoration(labelText: '% Fibrina/esfacelos'),
-          keyboardType: TextInputType.number,
-          onChanged: (v) => setState(() => _escala.porcentajeFibrina = double.tryParse(v)),
+        const SizedBox(height: 16),
+        PercentageSlider(
+          label: 'Fibrina/esfacelos',
+          value: _escala.porcentajeFibrina ?? 0,
+          onChanged: (v) => setState(() => _escala.porcentajeFibrina = v),
+          tooltip: 'Porcentaje de tejido desvitalizado',
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 16),
         CheckboxListTile(
           title: const Text('Necrosis presente'),
           value: _escala.necrosisPresente,
@@ -321,7 +343,7 @@ class _EscalaKuraLppScreenState extends State<EscalaKuraLppScreen> {
           items: ['No', 'Biopelícula', 'Celulitis', 'Osteomielitis'].map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
           onChanged: (v) => setState(() => _escala.infeccionCronica = v),
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 20),
         _buildDomainScore('Herida', _escala.dominioHerida, 3),
       ],
     );
@@ -330,37 +352,48 @@ class _EscalaKuraLppScreenState extends State<EscalaKuraLppScreen> {
   Widget _buildPressureForm() {
     return Column(
       children: [
-        TextField(
-          decoration: const InputDecoration(labelText: 'Adherencia alivio presión (%)'),
-          keyboardType: TextInputType.number,
-          onChanged: (v) => setState(() => _escala.adherenciaAlivioPresion = double.tryParse(v)),
-        ),
-        const SizedBox(height: 12),
-        TextField(
-          decoration: const InputDecoration(labelText: 'Frecuencia cambios (horas)'),
-          keyboardType: TextInputType.number,
-          onChanged: (v) => setState(() => _escala.frecuenciaCambiosPosturales = double.tryParse(v)),
+        PercentageSlider(
+          label: 'Adherencia al alivio de presión',
+          value: _escala.adherenciaAlivioPresion ?? 80,
+          onChanged: (v) => setState(() => _escala.adherenciaAlivioPresion = v),
+          tooltip: 'Cumplimiento del plan de alivio de presión',
         ),
         const SizedBox(height: 16),
-        Text('Braden Movilidad: ${_escala.bradenMovilidad}'),
+        LabeledSlider(
+          label: 'Frecuencia cambios posturales',
+          value: _escala.frecuenciaCambiosPosturales ?? 2,
+          min: 0.5,
+          max: 6,
+          unit: ' horas',
+          divisions: 11, // Incrementos de 0.5
+          onChanged: (v) => setState(() => _escala.frecuenciaCambiosPosturales = v),
+          tooltip: 'Cada cuántas horas se realizan cambios',
+        ),
+        const SizedBox(height: 20),
+        const Text('Braden Movilidad:', style: TextStyle(fontWeight: FontWeight.bold)),
+        const SizedBox(height: 4),
+        Text('Valor: ${_escala.bradenMovilidad}', style: TextStyle(color: Colors.grey[700])),
         Slider(
           value: _escala.bradenMovilidad.toDouble(),
           min: 1,
           max: 4,
           divisions: 3,
           label: '${_escala.bradenMovilidad}',
-          onChanged: (v) => setState(() => _escala.bradenMovilidad = v.toInt()),
+          onChanged: (v) => setState(() => _escala.bradenMovilidad = v.round()),
         ),
-        Text('Braden Humedad: ${_escala.bradenHumedad}'),
+        const SizedBox(height: 12),
+        const Text('Braden Humedad:', style: TextStyle(fontWeight: FontWeight.bold)),
+        const SizedBox(height: 4),
+        Text('Valor: ${_escala.bradenHumedad}', style: TextStyle(color: Colors.grey[700])),
         Slider(
           value: _escala.bradenHumedad.toDouble(),
           min: 1,
           max: 4,
           divisions: 3,
           label: '${_escala.bradenHumedad}',
-          onChanged: (v) => setState(() => _escala.bradenHumedad = v.toInt()),
+          onChanged: (v) => setState(() => _escala.bradenHumedad = v.round()),
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 20),
         _buildDomainScore('Presión', _escala.dominioPresion, 3),
       ],
     );
@@ -369,18 +402,30 @@ class _EscalaKuraLppScreenState extends State<EscalaKuraLppScreen> {
   Widget _buildClinicalForm() {
     return Column(
       children: [
-        TextField(
-          decoration: const InputDecoration(labelText: 'HbA1c (%)'),
-          keyboardType: TextInputType.number,
-          onChanged: (v) => setState(() => _escala.hba1c = double.tryParse(v)),
+        LabValueSlider(
+          label: 'HbA1c (Hemoglobina glucosilada)',
+          value: _escala.hba1c ?? 5.5,
+          min: 4.0,
+          max: 14.0,
+          unit: '%',
+          normalMin: 4.0,
+          normalMax: 5.7,
+          onChanged: (v) => setState(() => _escala.hba1c = v),
+          tooltip: 'Normal: <5.7%. Pre-diabetes: 5.7-6.4%. Diabetes: ≥6.5%',
         ),
-        const SizedBox(height: 12),
-        TextField(
-          decoration: const InputDecoration(labelText: 'Hemoglobina (g/dL)'),
-          keyboardType: TextInputType.number,
-          onChanged: (v) => setState(() => _escala.hemoglobina = double.tryParse(v)),
+        const SizedBox(height: 16),
+        LabValueSlider(
+          label: 'Hemoglobina',
+          value: _escala.hemoglobina ?? 13.0,
+          min: 6.0,
+          max: 18.0,
+          unit: 'g/dL',
+          normalMin: 12.0,
+          normalMax: 16.0,
+          onChanged: (v) => setState(() => _escala.hemoglobina = v),
+          tooltip: 'Normal: 12-16 g/dL. Anemia: <12',
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 20),
         DropdownButtonFormField<String>(
           decoration: const InputDecoration(labelText: 'Antecedentes LPP'),
           items: ['No', 'Estadio III', 'Estadio IV', 'Ambos'].map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
