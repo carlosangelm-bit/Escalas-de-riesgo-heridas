@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "112078476646",
-    "project_id": "surgical-supply",
-    "storage_bucket": "surgical-supply.appspot.com"
+    "project_number": "828932102560",
+    "project_id": "kuratracker-ada17",
+    "storage_bucket": "kuratracker-ada17.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:112078476646:android:abc123def456",
+        "mobilesdk_app_id": "1:828932102560:android:04bba5dc662005ec596cc5",
         "android_client_info": {
           "package_name": "com.surgicalsupply.woundcarepro"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDummyKeyForDevelopmentPurposes123456"
+          "current_key": "AIzaSyDOCfxvKQ5Ovh-5A2ZVQhmn_R8mzn4cR5E"
         }
       ],
       "services": {

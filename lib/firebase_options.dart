@@ -41,48 +41,46 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDummyKeyForWebDevelopment123456789',
-    appId: '1:112078476646:web:abc123def456',
-    messagingSenderId: '112078476646',
-    projectId: 'surgical-supply',
-    authDomain: 'surgical-supply.firebaseapp.com',
-    storageBucket: 'surgical-supply.appspot.com',
-    measurementId: 'G-MEASUREMENT_ID',
+    apiKey: 'AIzaSyDOCfxvKQ5Ovh-5A2ZVQhmn_R8mzn4cR5E',
+    appId: '1:828932102560:web:04bba5dc662005ec596cc5',
+    messagingSenderId: '828932102560',
+    projectId: 'kuratracker-ada17',
+    authDomain: 'kuratracker-ada17.firebaseapp.com',
+    storageBucket: 'kuratracker-ada17.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDummyKeyForAndroidDevelopment123456',
-    appId: '1:112078476646:android:abc123def456',
-    messagingSenderId: '112078476646',
-    projectId: 'surgical-supply',
-    storageBucket: 'surgical-supply.appspot.com',
+    apiKey: 'AIzaSyDOCfxvKQ5Ovh-5A2ZVQhmn_R8mzn4cR5E',
+    appId: '1:828932102560:android:04bba5dc662005ec596cc5',
+    messagingSenderId: '828932102560',
+    projectId: 'kuratracker-ada17',
+    storageBucket: 'kuratracker-ada17.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDummyKeyForIOSDevelopment123456789',
-    appId: '1:112078476646:ios:abc123def456',
-    messagingSenderId: '112078476646',
-    projectId: 'surgical-supply',
+    apiKey: 'AIzaSyDOCfxvKQ5Ovh-5A2ZVQhmn_R8mzn4cR5E',
+    appId: '1:828932102560:ios:04bba5dc662005ec596cc5',
+    messagingSenderId: '828932102560',
+    projectId: 'kuratracker-ada17',
     iosBundleId: 'com.surgicalsupply.woundcarepro',
-    storageBucket: 'surgical-supply.appspot.com',
+    storageBucket: 'kuratracker-ada17.firebasestorage.app',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDummyKeyForMacOSDevelopment123456',
-    appId: '1:112078476646:ios:abc123def456',
-    messagingSenderId: '112078476646',
-    projectId: 'surgical-supply',
+    apiKey: 'AIzaSyDOCfxvKQ5Ovh-5A2ZVQhmn_R8mzn4cR5E',
+    appId: '1:828932102560:ios:04bba5dc662005ec596cc5',
+    messagingSenderId: '828932102560',
+    projectId: 'kuratracker-ada17',
     iosBundleId: 'com.surgicalsupply.woundcarepro',
-    storageBucket: 'surgical-supply.appspot.com',
+    storageBucket: 'kuratracker-ada17.firebasestorage.app',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDummyKeyForWindowsDevelopment123456',
-    appId: '1:112078476646:web:abc123def456',
-    messagingSenderId: '112078476646',
-    projectId: 'surgical-supply',
-    authDomain: 'surgical-supply.firebaseapp.com',
-    storageBucket: 'surgical-supply.appspot.com',
-    measurementId: 'G-MEASUREMENT_ID',
+    apiKey: 'AIzaSyDOCfxvKQ5Ovh-5A2ZVQhmn_R8mzn4cR5E',
+    appId: '1:828932102560:web:04bba5dc662005ec596cc5',
+    messagingSenderId: '828932102560',
+    projectId: 'kuratracker-ada17',
+    authDomain: 'kuratracker-ada17.firebaseapp.com',
+    storageBucket: 'kuratracker-ada17.firebasestorage.app',
   );
 }
