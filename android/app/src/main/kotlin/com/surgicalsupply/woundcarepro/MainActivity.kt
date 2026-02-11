@@ -1,4 +1,4 @@
-package com.woundcarepro.wound_care_pro
+package com.surgicalsupply.woundcarepro
 
 import io.flutter.embedding.android.FlutterActivity
 
