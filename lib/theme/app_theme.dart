@@ -326,18 +326,18 @@ class AppTheme {
       ),
       
       // Dialog theme moderno
-      dialogTheme: DialogTheme(
+      dialogTheme: const DialogThemeData(
         elevation: 8,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
         backgroundColor: surface,
-        titleTextStyle: const TextStyle(
+        titleTextStyle: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.w600,
           color: textPrimary,
         ),
-        contentTextStyle: const TextStyle(
+        contentTextStyle: TextStyle(
           fontSize: 15,
           fontWeight: FontWeight.w400,
           color: textSecondary,
