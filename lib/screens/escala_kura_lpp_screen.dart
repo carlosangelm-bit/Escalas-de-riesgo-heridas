@@ -323,6 +323,7 @@ class _EscalaKuraLppScreenState extends State<EscalaKuraLppScreen> {
           value: _escala.porcentajeGranulacion ?? 0,
           onChanged: (v) => setState(() => _escala.porcentajeGranulacion = v),
           tooltip: 'Porcentaje de tejido de granulación saludable',
+          inverseColor: true, // ✅ Más granulación = mejor (verde)
         ),
         const SizedBox(height: 16),
         PercentageSlider(
