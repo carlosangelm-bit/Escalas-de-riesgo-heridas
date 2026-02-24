@@ -12,6 +12,7 @@ class LabeledSlider extends StatelessWidget {
   final bool showValue;
   final Color? activeColor;
   final String? tooltip;
+  final bool inverseColor; // true = mayor es mejor, false = menor es mejor
   
   const LabeledSlider({
     super.key,
@@ -25,6 +26,7 @@ class LabeledSlider extends StatelessWidget {
     this.showValue = true,
     this.activeColor,
     this.tooltip,
+    this.inverseColor = false, // Por defecto: menor valor = mejor
   });
   
   /// Obtener color según el valor (semáforo)
@@ -32,12 +34,25 @@ class LabeledSlider extends StatelessWidget {
     if (activeColor != null) return activeColor!;
     
     final percentage = (value - min) / (max - min);
-    if (percentage <= 0.33) {
-      return Colors.green;
-    } else if (percentage <= 0.66) {
-      return Colors.orange;
+    
+    if (inverseColor) {
+      // Mayor es mejor (ej: adherencia, granulación)
+      if (percentage >= 0.67) {
+        return Colors.green; // Rango alto = bueno
+      } else if (percentage >= 0.34) {
+        return Colors.orange; // Rango medio = precaución
+      } else {
+        return Colors.red; // Rango bajo = malo
+      }
     } else {
-      return Colors.red;
+      // Menor es mejor (ej: pérdida de peso, cronicidad)
+      if (percentage <= 0.33) {
+        return Colors.green; // Rango bajo = bueno
+      } else if (percentage <= 0.66) {
+        return Colors.orange; // Rango medio = precaución
+      } else {
+        return Colors.red; // Rango alto = malo
+      }
     }
   }
   
@@ -156,6 +171,7 @@ class PercentageSlider extends StatelessWidget {
   final double value;
   final ValueChanged<double> onChanged;
   final String? tooltip;
+  final bool inverseColor; // true = mayor es mejor (verde), false = mayor es peor (rojo)
   
   const PercentageSlider({
     super.key,
@@ -163,6 +179,7 @@ class PercentageSlider extends StatelessWidget {
     required this.value,
     required this.onChanged,
     this.tooltip,
+    this.inverseColor = false, // Por defecto: mayor porcentaje = peor (rojo)
   });
   
   @override
@@ -176,6 +193,7 @@ class PercentageSlider extends StatelessWidget {
       unit: '%',
       onChanged: onChanged,
       tooltip: tooltip,
+      inverseColor: inverseColor,
     );
   }
 }

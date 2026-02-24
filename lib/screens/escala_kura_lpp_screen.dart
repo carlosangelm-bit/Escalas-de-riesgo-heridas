@@ -311,11 +311,11 @@ class _EscalaKuraLppScreenState extends State<EscalaKuraLppScreen> {
           label: 'Cronicidad de la lesión',
           value: (_escala.cronicidadMeses ?? 0).toDouble(),
           min: 0,
-          max: 24,
-          divisions: 24,
+          max: 12,
+          divisions: 12,
           unit: ' meses',
           onChanged: (v) => setState(() => _escala.cronicidadMeses = v.round()),
-          tooltip: 'Tiempo desde aparición de la lesión',
+          tooltip: 'Tiempo desde aparición de la lesión (máx 12 meses)',
         ),
         const SizedBox(height: 16),
         PercentageSlider(
@@ -337,9 +337,51 @@ class _EscalaKuraLppScreenState extends State<EscalaKuraLppScreen> {
           value: _escala.necrosisPresente,
           onChanged: (v) => setState(() => _escala.necrosisPresente = v!),
         ),
+        const SizedBox(height: 16),
+        
+        // EXUDADOS
+        const Text('Tipos de exudado:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
         const SizedBox(height: 12),
+        
+        PercentageSlider(
+          label: 'Exudado serohemático',
+          value: _escala.exudadoSeroHematico ?? 0,
+          onChanged: (v) => setState(() => _escala.exudadoSeroHematico = v),
+          tooltip: 'Exudado con componente de sangre (0-100%)',
+        ),
+        const SizedBox(height: 16),
+        
+        PercentageSlider(
+          label: 'Exudado purulento',
+          value: _escala.exudadoPurulento ?? 0,
+          onChanged: (v) => setState(() => _escala.exudadoPurulento = v),
+          tooltip: 'Exudado con pus (0-100%)',
+        ),
+        const SizedBox(height: 16),
+        
+        PercentageSlider(
+          label: 'Exudado seropurulento',
+          value: _escala.exudadoSeroPurulento ?? 0,
+          onChanged: (v) => setState(() => _escala.exudadoSeroPurulento = v),
+          tooltip: 'Exudado mixto seroso y purulento (0-100%)',
+        ),
+        const SizedBox(height: 16),
+        
+        // INFECCIONES
+        const Text('Signos de infección:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+        const SizedBox(height: 12),
+        
+        CheckboxListTile(
+          title: const Text('Infección aguda presente'),
+          subtitle: const Text('Con datos clínicos de infección aguda'),
+          value: _escala.infeccionAguda,
+          onChanged: (v) => setState(() => _escala.infeccionAguda = v!),
+        ),
+        const SizedBox(height: 12),
+        
         DropdownButtonFormField<String>(
           decoration: const InputDecoration(labelText: 'Infección crónica'),
+          value: _escala.infeccionCronica,
           items: ['No', 'Biopelícula', 'Celulitis', 'Osteomielitis'].map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
           onChanged: (v) => setState(() => _escala.infeccionCronica = v),
         ),
@@ -357,6 +399,7 @@ class _EscalaKuraLppScreenState extends State<EscalaKuraLppScreen> {
           value: _escala.adherenciaAlivioPresion ?? 80,
           onChanged: (v) => setState(() => _escala.adherenciaAlivioPresion = v),
           tooltip: 'Cumplimiento del plan de alivio de presión',
+          inverseColor: true, // Mayor adherencia = mejor (verde)
         ),
         const SizedBox(height: 16),
         LabeledSlider(
@@ -497,3 +540,4 @@ class _EscalaKuraLppScreenState extends State<EscalaKuraLppScreen> {
     );
   }
 }
+

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
-import 'lpp_assessment_screen.dart';
+import 'escala_kura_lpp_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -43,14 +43,14 @@ class HomeScreen extends StatelessWidget {
               // Card LPP
               _AssessmentCard(
                 title: 'Lesiones por Presión',
-                subtitle: 'Evaluación LPP',
+                subtitle: 'Escala Kura+ LPP v2.0',
                 icon: Icons.accessibility_new,
                 color: Colors.blue,
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const LppAssessmentScreen(),
+                      builder: (context) => const EscalaKuraLppScreen(),
                     ),
                   );
                 },
