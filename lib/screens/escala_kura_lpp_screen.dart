@@ -247,11 +247,15 @@ class _EscalaKuraLppScreenState extends State<EscalaKuraLppScreen> {
         const SizedBox(height: 20),
         const Text('Historia clínica (30 días):', style: TextStyle(fontWeight: FontWeight.bold)),
         const SizedBox(height: 16),
-        PercentageSlider(
+        LabeledSlider(
           label: 'Pérdida de peso involuntaria',
           value: _escala.perdidaPesoInvoluntaria ?? 0,
+          min: 0,
+          max: 20,
+          divisions: 40,
+          unit: ' %',
           onChanged: (v) => setState(() => _escala.perdidaPesoInvoluntaria = v),
-          tooltip: '% peso perdido últimos 30 días',
+          tooltip: '<5% (0pts), 5-9.9% (1pt), 10-14.9% (2pts), ≥15% (3pts)',
         ),
         const SizedBox(height: 16),
         LabeledSlider(
@@ -262,6 +266,7 @@ class _EscalaKuraLppScreenState extends State<EscalaKuraLppScreen> {
           unit: ' g/kg/día',
           onChanged: (v) => setState(() => _escala.ingestaProteica = v),
           tooltip: 'Recomendado: 1.2-1.5 g/kg/día',
+          inverseColor: true, // ✅ Más ingesta proteica = mejor (verde)
         ),
         const SizedBox(height: 20),
         _buildDomainScore('Nutrición', _escala.dominioNutricion, 3),
@@ -275,20 +280,24 @@ class _EscalaKuraLppScreenState extends State<EscalaKuraLppScreen> {
       children: [
         const Text('Doppler/Vascular (30 días):', style: TextStyle(fontWeight: FontWeight.bold)),
         const SizedBox(height: 16),
-        LabeledSlider(
+        LabValueSlider(
           label: 'ITB/ABI (Índice Tobillo-Brazo)',
           value: _escala.indiceTobilloBrazo ?? 1.0,
           min: 0.0,
           max: 1.5,
+          unit: '',
+          normalMin: 0.9,
+          normalMax: 1.3,
           onChanged: (v) => setState(() => _escala.indiceTobilloBrazo = v),
-          tooltip: 'Normal: 0.9-1.3. <0.9 indica enfermedad arterial',
+          tooltip: 'Normal: 0.9-1.3. Sólo aplica en LPP de miembros pélvicos',
         ),
         const SizedBox(height: 20),
         const Text('Exploración física:', style: TextStyle(fontWeight: FontWeight.bold)),
         const SizedBox(height: 12),
         DropdownButtonFormField<String>(
           decoration: const InputDecoration(labelText: 'Llenado capilar'),
-          items: ['Normal', 'Leve', 'Moderada', 'Severa'].map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
+          value: _escala.llenadoCapilar,
+          items: ['Inmediato', 'Retardado (>3 seg)'].map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
           onChanged: (v) => setState(() => _escala.llenadoCapilar = v),
         ),
         const SizedBox(height: 12),

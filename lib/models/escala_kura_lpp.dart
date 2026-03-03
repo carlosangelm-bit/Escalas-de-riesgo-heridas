@@ -153,13 +153,9 @@ class EscalaKuraLpp {
   
   int get puntajeLlenadoCapilar {
     switch (llenadoCapilar) {
-      case 'Normal':
+      case 'Inmediato':
         return 0;
-      case 'Leve':
-        return 1;
-      case 'Moderada':
-        return 2;
-      case 'Severa':
+      case 'Retardado (>3 seg)':
         return 3;
       default:
         return 0;
