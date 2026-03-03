@@ -10,7 +10,21 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color capacityColor = AppTheme.getCapacityColor(result.capacityString);
+    // Mapeo de capacidad de curación a color
+    Color _getCapacityColor(String capacity) {
+      switch (capacity.toLowerCase()) {
+        case 'curable':
+          return AppTheme.success;
+        case 'mantenimiento':
+          return AppTheme.warning;
+        case 'no curable':
+          return AppTheme.error;
+        default:
+          return AppTheme.info;
+      }
+    }
+    
+    final Color capacityColor = _getCapacityColor(result.capacityString);
     
     return Scaffold(
       appBar: AppBar(
@@ -41,7 +55,7 @@ class ResultScreen extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const Icon(Icons.person, color: AppTheme.primaryKura),
+                        const Icon(Icons.person, color: AppTheme.primary),
                         const SizedBox(width: 8),
                         Text(
                           'Información del Paciente',
@@ -157,7 +171,7 @@ class ResultScreen extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const Icon(Icons.flag, color: AppTheme.primaryKura),
+                        const Icon(Icons.flag, color: AppTheme.primary),
                         const SizedBox(width: 8),
                         Text(
                           'Objetivo del Tratamiento',
