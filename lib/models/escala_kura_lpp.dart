@@ -415,8 +415,9 @@ class EscalaKuraLpp {
   /// DOMINIO 2: PERFUSIÓN (0-3)
   /// Regla: Usar el peor puntaje entre todos los parámetros
   int get dominioPerfusion {
+    // NOTA: ITB no se incluye en LPP - solo aplica para lesiones vasculares (pie diabético, úlceras venosas)
     final puntajes = [
-      puntajeITB,
+      // puntajeITB,  // ❌ Excluido de LPP
       puntajeTcpo2,
       puntajeLlenadoCapilar,
       puntajeEdema,

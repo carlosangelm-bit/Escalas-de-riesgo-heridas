@@ -278,20 +278,6 @@ class _EscalaKuraLppScreenState extends State<EscalaKuraLppScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Doppler/Vascular (30 días):', style: TextStyle(fontWeight: FontWeight.bold)),
-        const SizedBox(height: 16),
-        LabValueSlider(
-          label: 'ITB/ABI (Índice Tobillo-Brazo)',
-          value: _escala.indiceTobilloBrazo ?? 1.0,
-          min: 0.0,
-          max: 1.5,
-          unit: '',
-          normalMin: 0.9,
-          normalMax: 1.3,
-          onChanged: (v) => setState(() => _escala.indiceTobilloBrazo = v),
-          tooltip: 'Normal: 0.9-1.3. Sólo aplica en LPP de miembros pélvicos',
-        ),
-        const SizedBox(height: 20),
         const Text('Exploración física:', style: TextStyle(fontWeight: FontWeight.bold)),
         const SizedBox(height: 12),
         DropdownButtonFormField<String>(
